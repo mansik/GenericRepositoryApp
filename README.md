@@ -73,7 +73,7 @@ This tutorial does not uses Entity Framework instead it is using Dapper and raw 
 		* 스크립트 이름 UserDB.sql => 자동으로 생성됨
 		* Profile로 저장
 	* 그러면 프로젝트에 GenericRepositoryDB.publish.xml파일로 존재
-	* .GitIgnore의 *.[Pp]ublish.xml 부분 주석처리하여 저장소에 빠지는 것을 방지
+	* .GitIgnore를 통해 저장소에 빠지므로 마우스 우측클릭-> git ->`소스 제어에 무시된 파일 추가`를 통해 추가한다.
 	* GenericRepositoryDB.publish.xml을 더블클릭하면 게시화면을 호출할 수 있으며,
 	* 게시 한다.
 	* Database가 제대로 생성 되었는지 확인한다.
