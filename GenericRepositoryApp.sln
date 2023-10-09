@@ -7,12 +7,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GenericRepository", "Generi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GenericRepositoryBinding", "GenericRepositoryBinding\GenericRepositoryBinding.csproj", "{612DAB1F-AF97-4EE6-8341-52AB03416B02}"
 EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "UserDB", "GenericRepositoryDB\UserDB.sqlproj", "{4DCF37B4-35E7-4828-92ED-6531333187EB}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "솔루션 항목", "솔루션 항목", "{6950DB77-26DC-40BF-8112-0A41D9E60CEE}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "UserDB", "UserDB\UserDB.sqlproj", "{4DCF37B4-35E7-4828-92ED-6531333187EB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

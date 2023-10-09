@@ -38,11 +38,11 @@ This tutorial does not uses Entity Framework instead it is using Dapper and raw 
     ```
 # GenericRepositoryBinding : 디자인 패턴 적용 및 Input control에 DataBindings 사용
 
-# GenericRepositoryDB : DB 생성 프로젝트
+# UserDB : DB 생성 프로젝트
 
 ## DB 프로젝트 생성 및 게시 방법
 * SQL Server DataBase project 추가 
-	* 프로젝트명 GenericRepositoryDB
+	* 프로젝트명 UserDB
 	* dbo 폴더 추가
 		* Tables 폴더 추가
 			* `Table` 추가
