@@ -1,7 +1,7 @@
 ﻿# DB 프로젝트 생성 및 게시 방법
 
 * SQL Server DataBase project 추가 
-	* 프로젝트명 GenericRepositoryDB
+	* 프로젝트명 UserDB
 	* dbo 폴더 추가
 		* Tables 폴더 추가
 			* `Table` 추가
@@ -31,8 +31,8 @@
 		* Database 이름 GenericRepository
 		* 스크립트 이름 UserDB.sql => 자동으로 생성됨
 		* Profile로 저장
-	* 그러면 프로젝트에 GenericRepositoryDB.publish.xml파일로 존재
+	* 그러면 프로젝트에 UserDB.publish.xml파일로 존재
 	* .GitIgnore를 통해 저장소에 빠지므로 마우스 우측클릭-> git ->`소스 제어에 무시된 파일 추가`를 통해 추가한다.
-	* GenericRepositoryDB.publish.xml을 더블클릭하면 게시화면을 호출할 수 있으며,
+	* UserDB.publish.xml을 더블클릭하면 게시화면을 호출할 수 있으며,
 	* 게시 한다.
 	* Database가 제대로 생성 되었는지 확인한다.
