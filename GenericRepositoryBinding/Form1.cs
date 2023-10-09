@@ -10,16 +10,17 @@ namespace GenericRepository
     public partial class Form1 : Form
     {
         EntityState objState = EntityState.Unchanged;
-
+        IGenericRepository<Student> _dao;
         public Form1()
         {
             InitializeComponent();
+
+            _dao = new GenericRepository<Student>();
         }
 
         void Display()
         {
-            IGenericRepository<Student> dao = new GenericRepository<Student>();
-            dataGridView.DataSource = dao.GetAll();
+            dataGridView.DataSource = _dao.GetAll();
 
             //한번에 모든 바인딩 지우기 => (https://learn.microsoft.com/ko-kr/dotnet/api/system.windows.forms.controlbindingscollection.clear?view=windowsdesktop-7.0)
             studentIDTextBox.DataBindings.Clear();
@@ -56,6 +57,7 @@ namespace GenericRepository
             ageTextBox.Text = string.Empty;
             addressTextBox.Text = string.Empty;
             objState = EntityState.Added;
+
             fullNameTextBox.Focus();
         }
 
@@ -67,9 +69,9 @@ namespace GenericRepository
                 bool isDelete = dao.Delete(Convert.ToInt32(studentIDTextBox.Text));
                 if (isDelete)
                 {
+                    objState = EntityState.Unchanged;
                     //ClearInput();// DataBinding에서 처리하여 주석처리
                     Display();
-                    objState = EntityState.Unchanged;
                 }
                 else
                 {
@@ -93,9 +95,9 @@ namespace GenericRepository
 
             if (isComplete)
             {
+                objState = EntityState.Unchanged;
                 //ClearInput(); // DataBinding에서 처리하여 주석처리
                 Display();
-                objState = EntityState.Unchanged;
             }
             else
             {

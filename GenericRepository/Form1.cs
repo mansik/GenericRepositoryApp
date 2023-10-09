@@ -7,16 +7,20 @@ namespace GenericRepository
 {
     public partial class Form1 : Form
     {
-        private Boolean isNew = false;
+        private bool _isNew = false;
+        readonly IGenericRepository<Student> _dao;
+
         public Form1()
         {
             InitializeComponent();
+
+            _dao = new GenericRepository<Student>();
         }
 
         void Display()
         {
-            IGenericRepository<Student> dao = new GenericRepository<Student>();
-            dataGridView.DataSource = dao.GetAll();
+           
+            dataGridView.DataSource = _dao.GetAll();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -37,7 +41,8 @@ namespace GenericRepository
             genderCheckBox.Checked = false;
             ageTextBox.Text = string.Empty;
             addressTextBox.Text = string.Empty;
-            isNew = true;
+            _isNew = true;
+
             fullNameTextBox.Focus();
         }
 
@@ -45,13 +50,12 @@ namespace GenericRepository
         {
             if (!string.IsNullOrEmpty(studentIDTextBox.Text))
             {
-                IGenericRepository<Student> dao = new GenericRepository<Student>();
-                bool isDelete = dao.Delete(Convert.ToInt32(studentIDTextBox.Text));
+                bool isDelete = _dao.Delete(Convert.ToInt32(studentIDTextBox.Text));
                 if (isDelete)
                 {
+                    _isNew = false;
                     //ClearInput(); //dataGridView_SelectionChanged()에서 처리됨
                     Display();
-                    isNew = false;
                 }
                 else
                 {
@@ -63,25 +67,24 @@ namespace GenericRepository
         private void saveButton_Click(object sender, EventArgs e)
         {
             bool isComplete = false;
-            IGenericRepository<Student> dao = new GenericRepository<Student>();
-            if (isNew)
+            if (_isNew)
             {
-                isComplete = dao.Insert(new Student() { FullName = fullNameTextBox.Text, Gender = genderCheckBox.Checked, Age = Convert.ToInt32(ageTextBox.Text), Address = addressTextBox.Text });
+                isComplete = _dao.Insert(new Student() { FullName = fullNameTextBox.Text, Gender = genderCheckBox.Checked, Age = Convert.ToInt32(ageTextBox.Text), Address = addressTextBox.Text });
             }
             else
             {
-                isComplete = dao.Update(new Student() { StudentID = Convert.ToInt32(studentIDTextBox.Text), FullName = fullNameTextBox.Text, Gender = genderCheckBox.Checked, Age = Convert.ToInt32(ageTextBox.Text), Address = addressTextBox.Text });
+                isComplete = _dao.Update(new Student() { StudentID = Convert.ToInt32(studentIDTextBox.Text), FullName = fullNameTextBox.Text, Gender = genderCheckBox.Checked, Age = Convert.ToInt32(ageTextBox.Text), Address = addressTextBox.Text });
             }
 
             if (isComplete)
             {
+                _isNew = false;
                 //ClearInput(); //dataGridView_SelectionChanged()에서 처리됨
                 Display();
-                isNew = false;
             }
             else
             {
-                var state = isNew ? "Added" : "Updated";
+                var state = _isNew ? "Added" : "Updated";
                 MessageBox.Show($"Student not {state})", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -97,7 +100,7 @@ namespace GenericRepository
                 genderCheckBox.Checked = Convert.ToBoolean(dataGridView.Rows[row].Cells[2].Value);
                 ageTextBox.Text = dataGridView.Rows[row].Cells[3].Value.ToString();
                 addressTextBox.Text = dataGridView.Rows[row].Cells[4].Value.ToString();
-                isNew = false;
+                _isNew = false;
             }
         }
 
