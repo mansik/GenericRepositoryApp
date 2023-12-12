@@ -1,10 +1,5 @@
 using Dapper;
 using GenericRepository.Entity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GenericRepository.Dao
 {
@@ -26,44 +21,34 @@ namespace GenericRepository.Dao
 
         public bool Delete(int id)
         {
-            using (var db = GetConnection())
-            {
-                return db.Execute($@"delete from {_tableName} 
+            using var db = GetConnection();
+            return db.Execute($@"delete from {_tableName} 
                     where {_idKeyColumnName} = @id;", new { id }) > 0;
-            }
         }
 
         public List<T>? GetAll()
         {
-            using (var db = GetConnection())
-            {
-                return db.Query<T>($@"select * from {_tableName};").AsList();
-            }
+            using var db = GetConnection();
+            return db.Query<T>($@"select * from {_tableName};").AsList();
         }
 
         public T? GetById(int id)
         {
-            using (var db = GetConnection())
-            {
-                return db.QueryFirstOrDefault<T>($@"select * from {_tableName} 
+            using var db = GetConnection();
+            return db.QueryFirstOrDefault<T>($@"select * from {_tableName} 
                     where {_idKeyColumnName} = @id;", new { id });
-            }
         }
 
         public bool Insert(T entity)
         {
-            using (var db = GetConnection())
-            {
-                return db.Execute(_insertSqlTemplate, entity) > 0;
-            }
+            using var db = GetConnection();
+            return db.Execute(_insertSqlTemplate, entity) > 0;
         }
 
         public bool Update(T entity)
         {
-            using (var db = GetConnection())
-            {
-                return db.Execute(_updateSqlTemplate, entity) > 0;
-            }
+            using var db = GetConnection();
+            return db.Execute(_updateSqlTemplate, entity) > 0;
         }
     }
 }

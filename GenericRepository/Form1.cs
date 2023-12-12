@@ -1,14 +1,12 @@
-using Dapper;
 using GenericRepository.Dao;
 using GenericRepository.Entity;
-using System.Windows.Forms;
 
 namespace GenericRepository
 {
     public partial class Form1 : Form
     {
         private bool _isNew = false;
-        readonly IGenericRepository<Student> _dao;
+        readonly GenericRepository<Student> _dao;
 
         public Form1()
         {
@@ -19,7 +17,7 @@ namespace GenericRepository
 
         void Display()
         {
-           
+
             dataGridView.DataSource = _dao.GetAll();
         }
 
@@ -66,7 +64,7 @@ namespace GenericRepository
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-            bool isComplete = false;
+            bool isComplete;
             if (_isNew)
             {
                 isComplete = _dao.Insert(new Student() { FullName = fullNameTextBox.Text, Gender = genderCheckBox.Checked, Age = Convert.ToInt32(ageTextBox.Text), Address = addressTextBox.Text });

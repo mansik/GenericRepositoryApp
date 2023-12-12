@@ -1,10 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace GenericRepository.Entity
 {
     internal abstract class BaseEntity
@@ -14,16 +7,17 @@ namespace GenericRepository.Entity
         public abstract string InsertSqlTemplate { get; }
         public abstract string UpdateSqlTemplate { get; }
 
-        private static readonly Dictionary<string, BaseEntity> _entities = new Dictionary<string, BaseEntity>();
+        private static readonly Dictionary<string, BaseEntity> _entities = [];
         public static BaseEntity CreateEmptyInstance<T>()
         {
             var key = typeof(T).FullName;
-            if (!_entities.ContainsKey(key))
+            if (!_entities.TryGetValue(key, out BaseEntity? value))
             {
                 var obj = Activator.CreateInstance<T>() as BaseEntity;
-                _entities.Add(key, obj);
+                value = obj;
+                _entities.Add(key, value);
             }
-            return _entities[key];
+            return value;
         }
     }
 }

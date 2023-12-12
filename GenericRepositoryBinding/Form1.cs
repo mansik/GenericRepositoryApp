@@ -1,16 +1,12 @@
-using Dapper;
 using GenericRepository.Dao;
 using GenericRepository.Entity;
-using System.Net;
-using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace GenericRepository
 {
     public partial class Form1 : Form
     {
         EntityState objState = EntityState.Unchanged;
-        IGenericRepository<Student> _dao;
+        GenericRepository<Student> _dao;
         public Form1()
         {
             InitializeComponent();
@@ -65,7 +61,7 @@ namespace GenericRepository
         {
             if (!string.IsNullOrEmpty(studentIDTextBox.Text))
             {
-                IGenericRepository<Student> dao = new GenericRepository<Student>();
+                GenericRepository<Student> dao = new();
                 bool isDelete = dao.Delete(Convert.ToInt32(studentIDTextBox.Text));
                 if (isDelete)
                 {
@@ -82,8 +78,8 @@ namespace GenericRepository
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-            bool isComplete = false;
-            IGenericRepository<Student> dao = new GenericRepository<Student>();
+            GenericRepository<Student> dao = new();
+            bool isComplete;
             if (objState == EntityState.Added)
             {
                 isComplete = dao.Insert(new Student() { FullName = fullNameTextBox.Text, Gender = genderCheckBox.Checked, Age = Convert.ToInt32(ageTextBox.Text), Address = addressTextBox.Text });

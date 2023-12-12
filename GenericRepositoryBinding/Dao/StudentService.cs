@@ -1,20 +1,10 @@
 using GenericRepository.Entity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GenericRepository.Dao
 {
-    internal class StudentService : IGenericRepository<Student>
+    internal class StudentService(IGenericRepository<Student> dao) : IGenericRepository<Student>
     {
-        private readonly IGenericRepository<Student> _dao;
-
-        public StudentService(IGenericRepository<Student> dao)
-        {
-            _dao = dao;
-        }
+        private readonly IGenericRepository<Student> _dao = dao;
 
         public bool Delete(int id)
         {
