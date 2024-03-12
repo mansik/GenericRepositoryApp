@@ -4,22 +4,23 @@
 
 # GenericRepository 
 
-## 참고
 [Generic Repository without Entity Framework using MS SQL & Dapper](https://youtu.be/a1Sbmv0qPpw?si=ZHxcAi_tQk-nyOrU)
+* 조회수 829회  2023. 4. 24.
 
-## 설명:  디자인 패턴 적용
-조회수 829회  2023. 4. 24.
-Brief tutorial on creating a generic repository for common crud task.
-This tutorial does not uses Entity Framework instead it is using Dapper and raw SQL queries.
+## About: 디자인 패턴 적용
+* C#, WinForm, MSSQL 2022, Dapper
+* Brief tutorial on creating a generic repository for common crud task.
+* This tutorial does not uses Entity Framework instead it is using Dapper and raw SQL queries.
 
-## 환경
-* Visual Studio: [ ] 2019, [x] 2022
-* 프로젝트 생성: [ ] .Net Framework, [x] .Net WinForm(windows form)
-* Package 
-  * [ ] DevExpress 18.2
-* NuGet
-  * [x] System.Data.SqlClient
-  * [x] Dapper 
+## Environment
+* IDE: Visual Studio 2022
+* Language: C#
+* Applied Project Template: .NET 8.0
+* NuGet  
+    * Dapper
+	* System.Data.SqlClient
+* Third Party Libraries    
+* DataBase: MS SQL 2022
 
 ## 작업
 * DataGridView에서 데이터 원본 선택 -> 데이터 원본 형식이름 Student를 선택하면 DataGridView의 컬럼이 나타난다.
